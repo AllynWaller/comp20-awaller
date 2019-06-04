@@ -1,9 +1,9 @@
 # Responsive CSS
 
-Implemented: Made README.md & responsive.css
+Implemented: Made README.md & responsive.css, made responsive.css respond to screen width.
 
-To-Do: Make responsive.css do something
+To-Do: None
 
 Collaborators: None
 
-Time Spent: 10 min so far 
+Time Spent: 1 hour
