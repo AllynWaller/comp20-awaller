@@ -1,8 +1,8 @@
 # Messages
 
-Implemented: JSON parsed
+Implemented: JSON parsed & displayed
 
-To-Do: Parse Get rid of quotes?
+To-Do: Get rid of quotes?
 
 Collaborators: None
 
