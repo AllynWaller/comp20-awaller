@@ -22,9 +22,25 @@
          {
            lyrics.innerHTML ="<p>Come gather round, children,</p><p>It's high time ye learned</p><p>'Bout a hero named Homer</p><p>And a devil named Burns.</p>";
          }
-         if (video.currentTime > 16 && video.currentTime < 27)
+         else if (video.currentTime > 16 && video.currentTime < 27)
          {
            lyrics.innerHTML ="<p>We'll march 'till we drop</p><p>The girls and the fellas.</p><p>We'll fight 'till the death</p><p>Or else fold like umbrellas.</p>";
+         }
+         else if (video.currentTime > 37 && video.currentTime < 50)
+         {
+           lyrics.innerHTML ="<p>So we'll march day and night</p><p>By the big cooling tower.</p><p>They have the plant</p><p>But we have the power.</p>";
+         }
+         else if (video.currentTime > 50 && video.currentTime < 56)
+         {
+           lyrics.innerHTML ="<p>Now do \"Classical Gas!\"</p>";
+         }
+         else if (video.currentTime > 70 && video.currentTime < 91)
+         {
+           lyrics.innerHTML ="<p>So we'll march day and night</p><p>By the big cooling tower.</p><p>They have the plant</p><p>But we have the power.</p>";
+         }
+         else 
+         {
+           lyrics.innerHTML ="<p></p>";
          }
        }
        video.addEventListener("timeupdate", display);
