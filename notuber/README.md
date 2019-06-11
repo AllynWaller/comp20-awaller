@@ -1,9 +1,9 @@
 # Messages
 
-Implemented: Files made
+Implemented: Files made, examples copied. Map centered on South Station. Cars added and icon changed.
 
-To-Do:
+To-Do: 
 
 Collaborators: None
 
-Time Spent: 
+Time Spent: 1. hr
