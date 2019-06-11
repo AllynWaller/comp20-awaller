@@ -6,9 +6,20 @@
   <meta charset="utf-8" />
   <title>Messages</title>
   <script>
-    function loadMessages() {
+    function loadMessages()
+    {
       jsonData = '[{"id":1,"content":"Do you really want to hurt me?","username":"Boy"},{"id":2,"content":"Do you really want to make me cry?","username":"George"}]';
-      // Your code here......
+
+      var messages = document.getElementById("messages");
+      var data = JSON.parse(jsonData);
+
+      for(var i=0;i<data.length;i++)
+        {
+          messages.innerHTML += JSON.stringify(data[i]['content']);
+          messages.innerHTML += " ";
+          messages.innerHTML += JSON.stringify(data[i]['username']);
+          messages.innerHTML += "<p/>";
+        }
     }
   </script>
 </head>

@@ -1,9 +1,9 @@
 # Messages
 
-Implemented: Made files
+Implemented: JSON parsed
 
-To-Do: Parse JSON
+To-Do: Parse Get rid of quotes?
 
 Collaborators: None
 
-Time Spent: 5 min
+Time Spent: 1 hr
