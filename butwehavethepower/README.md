@@ -1,9 +1,9 @@
 # But We Have the Power
 
-Implemented: Made README.md, copied HTML
+Implemented: Made README.md, copied HTML, lyrics, styling
 
-To-Do: Make lyrics appear, CSS styling
+To-Do: None
 
 Collaborators: None
 
-Time Spent: 
+Time Spent: 1.5 hours
