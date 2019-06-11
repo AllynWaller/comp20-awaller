@@ -12,14 +12,17 @@
 
       var messages = document.getElementById("messages");
       var data = JSON.parse(jsonData);
+      var output = "";
 
       for(var i=0;i<data.length;i++)
         {
-          messages.innerHTML += JSON.stringify(data[i]['content']);
-          messages.innerHTML += " ";
-          messages.innerHTML += JSON.stringify(data[i]['username']);
-          messages.innerHTML += "<p/>";
+          output += "<p>"
+          output += JSON.stringify(data[i]['content']);
+          output += " ";
+          output += JSON.stringify(data[i]['username']);
+          output += "</p>";
         }
+      messages.innerHTML = output;
     }
   </script>
 </head>
