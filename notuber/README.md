@@ -6,4 +6,4 @@ To-Do:
 
 Collaborators: None
 
-Time Spent: 1. hr
+Time Spent: 1.5 hr
