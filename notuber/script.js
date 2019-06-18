@@ -1,6 +1,7 @@
 var map, infoWindow;
 var myCoordinates;
 var markers = [];
+var lowestCar = 0;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 42.352271, lng: -71.05524200000001},
@@ -69,25 +70,37 @@ var markers = [];
             var myPosition = new google.maps.Marker({
             	position: pos,
             	map: map
-
             });
             myPosition.addListener('click', function getClosestCar(){
-            	console.log("get closest car");
             	var lowest = google.maps.geometry.spherical.computeDistanceBetween(myPosition.position, markers[0].position);
 				for(var i = 1; i < markers.length; i++){
 					var temp = google.maps.geometry.spherical.computeDistanceBetween(myPosition.position, markers[i].position);
 					if(temp < lowest){
 						lowest = temp;
+						lowestCar = i;
 					}
 				}
 				lowest *= 0.000621371;
 				infoWindow = new google.maps.InfoWindow;
 				infoWindow.setPosition(myPosition.position);
-            	infoWindow.setContent("The nearest car is "+lowest.toFixed(1)+ " miles away.");
+            	infoWindow.setContent("The nearest car is "+markers[lowestCar].id+" and it is "+lowest.toFixed(1)+ " miles away.");
             	infoWindow.open(map, myPosition);
 
-				console.log("The nearest car is "+lowest.toFixed(1)+ " miles away.");
-            });
+            	//Polyline based on https://developers.google.com/maps/documentation/javascript/examples/polyline-simple
+            	var polylineCoordinates = [
+          			markers[lowestCar].position,
+          			myPosition.position
+        		];
+        		var carPath = new google.maps.Polyline({
+        		  path: polylineCoordinates,
+ 		         geodesic: true,
+        		  strokeColor: '#00FF00',
+  		        strokeOpacity: 1.0,
+        		  strokeWeight: 2
+   		     });
+
+  				carPath.setMap(map);
+	        });
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
           });
@@ -95,11 +108,7 @@ var markers = [];
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
-
-		//Find closest car and display infoWindow
-		infoWindow = new google.maps.InfoWindow;
-
-
+        
       }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
