@@ -8,4 +8,4 @@ Collaborators: No collaborators, but did consult Maps API documentation heavily,
 
 https://developers.google.com/maps/documentation/javascript/geolocation
 
-Time Spent: 1.5 hr
+Time Spent: 2.5 hr
