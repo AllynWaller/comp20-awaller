@@ -6,4 +6,4 @@ To-Do: Determine geolocation, place marker, make request to API, display infowin
 
 Collaborators: None
 
-Time Spent: 1 hr
+Time Spent: 1.5 hr
