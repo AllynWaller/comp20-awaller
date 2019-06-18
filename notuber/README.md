@@ -1,8 +1,8 @@
 # Messages
 
-Implemented: Geolocation found, marker placed.
+Implemented: Geolocation found, marker placed. Nearest car found, infowindow displayed.
 
-To-Do: make request to API, display infowindow, render polyline
+To-Do: make request to API, render polyline
 
 Collaborators: No collaborators, but did consult Maps API documentation heavily, including: 
 
