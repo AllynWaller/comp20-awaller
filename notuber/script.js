@@ -20,7 +20,9 @@ var lowestCar = 0;
           }
         };
 
-        var features = [
+        var features = [];
+
+        /* = [
           {
             position: new google.maps.LatLng(42.3453, -71.0464),
             type: 'car',
@@ -46,7 +48,7 @@ var lowestCar = 0;
             type: 'car',
             id: 'VMerzMH8'
           }
-        ];
+        ]; 
 
         // Create car markers.
         for (var i = 0; i < features.length; i++) {
@@ -57,11 +59,9 @@ var lowestCar = 0;
             id: features[i].id
           });
           markers.push(marker);
-        };
+        };*/
 
         //Create my location marker. Based on code from https://developers.google.com/maps/documentation/javascript/geolocation
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
               lat: position.coords.latitude,
@@ -100,24 +100,46 @@ var lowestCar = 0;
    		     });
 
   				carPath.setMap(map);
+
+  				
+
 	        });
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
+
+
+	        //Get car locations from API
+	        var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'https://hans-moleman.herokuapp.com/rides', true);
+			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4 && xhr.status == 200) {
+	 		    	response = JSON.parse(xhr.responseText);
+	 		    	for(var i=0; i<response.length; i++){
+	 		    		features.push(
+	 		    			{
+            				position: new google.maps.LatLng(response[i].lat, response[i].lng),
+            				type: 'car',
+            				id: response[i]['_id']
+         					})
+	 		    	}
+	 		    	// Create car markers.
+        			for (var i = 0; i < features.length; i++) {
+         				var marker = new google.maps.Marker({
+           					position: features[i].position,
+            				icon: icons[features[i].type].icon,
+            				map: map,
+            				id: features[i].id
+         				});
+          				markers.push(marker);
+        			};
+				}
+			}
+
+			xhr.send("username=HPjvo9hA&lat="+position.coords.latitude+"&lng="+position.coords.longitude);
           });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-        
       }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-      'Error: The Geolocation service failed.' :
-      'Error: Your browser doesn\'t support geolocation.');
-    infoWindow.open(map);
-}
+
 
 
       
