@@ -1,8 +1,9 @@
 var map;
+var myCoordinates;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 42.352271, lng: -71.05524200000001},
-          zoom: 14
+          zoom: 12
         });
         var image = {
           url: 'https://tuftsdev.github.io/WebProgramming/assignments/summer2019/car.png',
@@ -10,7 +11,6 @@ var map;
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(15, 35)
         };
-
 
         var icons = {
           car: {
@@ -46,7 +46,7 @@ var map;
           }
         ];
 
-        // Create markers.
+        // Create car markers.
         for (var i = 0; i < features.length; i++) {
           var marker = new google.maps.Marker({
             position: features[i].position,
@@ -56,7 +56,35 @@ var map;
           });
         };
 
+        //Create my location marker. Based on code from https://developers.google.com/maps/documentation/javascript/geolocation
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var myPosition = new google.maps.Marker({
+            	position: pos,
+            	map: map
+
+            });
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
       }
 
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
 
+      
 

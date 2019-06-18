@@ -1,9 +1,11 @@
 # Messages
 
-Implemented: Files made, examples copied. Map centered on South Station. Cars added and icon changed.
+Implemented: Geolocation found, marker placed.
 
-To-Do: Determine geolocation, place marker, make request to API, display infowindow, render polyline
+To-Do: make request to API, display infowindow, render polyline
 
-Collaborators: None
+Collaborators: No collaborators, but did consult Maps API documentation heavily, including: 
+
+https://developers.google.com/maps/documentation/javascript/geolocation
 
 Time Spent: 1.5 hr
