@@ -100,15 +100,12 @@ var lowestCar = 0;
    		     });
 
   				carPath.setMap(map);
-
-  				
-
 	        });
 
 
 	        //Get car locations from API
 	        var xhr = new XMLHttpRequest();
-			xhr.open('POST', 'https://hans-moleman.herokuapp.com/rides', true);
+			xhr.open('POST', 'https://cryptic-reaches-40397.herokuapp.com/rides', true);
 			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
 			xhr.onreadystatechange = function() {
@@ -119,7 +116,8 @@ var lowestCar = 0;
 	 		    			{
             				position: new google.maps.LatLng(response[i].lat, response[i].lng),
             				type: 'car',
-            				id: response[i]['_id']
+            				id: response[i]['_id'],
+            				username: response[i].username
          					})
 	 		    	}
 	 		    	// Create car markers.
