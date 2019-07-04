@@ -1,9 +1,9 @@
 # Security and Privacy Assessment
 
-Implemented: Two instances of a vulnerability found
+Implemented: Two instances of a vulnerability found, two more vulnerabilities found. Conclusion and Abstract written.
 
-To-Do: Find and document two more vulnerabilities
+To-Do: None
 
 Collaborators: No collaborators
 
-Time Spent: 2 hrs
+Time Spent: 3 hrs

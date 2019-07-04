@@ -16,7 +16,8 @@
   <p class="body">In order to test this system, I used the freely avaiable tool <a href="https://curl.haxx.se/">curl</a> and web browsers (Firefox and Chrome).</p>
   
   <p class="title">Abstract of Findings</p>
-  <p class="body">Text here</p>
+  <p class="body">This application needs to be shut down immediately. The main page has already been infected with malicious code, the entire contents of the databases on customers and vehicles is visible, and once a user has access, so does any future site they visit. </p>
+  <p class="body">The issues mostly stem from a complete lack of validation on user input. Malicious users are able to chose usernames that the website stores as code, which is then read and executed by the browser of the end-user. Right now, these attackers have only created a series of annoying (but harmless) pop-up messages, but there is nothing stopping them from inserting more malicious code that could potentially invite ransomware, turn the computer into part of a botnet, or just crash it completely. </p>
   
   <p class="title">Issues Found</p>
     <p class="body">
@@ -34,23 +35,23 @@
   		<li class ="subtitle">Issue: CORS Enabled</li>
   		<li>Location: /rides and /update</li>
   		<li>Severity: Medium</li>
-  		<li>Description: I discovered this vulnerability when I switched to white-box testing and examined the code underlying the server. </li>
-  		<li>Proof of Vulnerability: </li>
-  		<li>Resolution: </li>
+  		<li>Description: I discovered this vulnerability when I switched to white-box testing and examined the code underlying the server. Although this server does not use cookies for authentication, which is a problem in and of itself, enabling Cross-Origin Resource Sharing for *any* site is a real security risk, as it would allow any other site to have access to these credentials if the user is logged in. Especially for administrator accounts, this is a real concern. </li>
+  		<li>Proof of Vulnerability: <img alt="A screenshot showing CORS enabled" src="CORS.png" /> </li>
+  		<li>Resolution: Instead of allowing CORS for all sites, allow it for only a selected whitelist that are approved to use the service, with an option for other APIs to request access.</li>
   	</ul>
   </p>
   <p class="body">
   	<ul>
-  		<li class ="subtitle">Issue: </li>
-  		<li>Location: </li>
-  		<li>Severity: </li>
-  		<li>Description: </li>
-  		<li>Proof of Vulnerability: </li>
-  		<li>Resolution: </li>
+  		<li class ="subtitle">Issue: Cross-Site Scripting</li>
+  		<li>Location: /rides</li>
+  		<li>Severity: High</li>
+  		<li>Description: This vulnerablility has already been taken advantage of. The database is infected with malicious code that alters the intended readout of the index (main page). I discovered that this volnerability existed when I first visited the page and was greeted by a series of pop-ups (an example shown below). This is clear proof that the user input has not been sanitized in this route either, except the consequences are much more dire. There is nothing stopping an attacker from inserting something more malicious than pop-ups or rickrolls into the website.</li>
+  		<li>Proof of Vulnerability: <img alt="A screenshot showing a hacked pop-up" src="XSS.png" /> </li>
+  		<li>Resolution: Sanitize user input. Disallow special characters in usernames and limit the number of characters. Or better yet, keep screen names and user ids separate, so that users cannot directly input data at all.</li>
   	</ul>
   </p>
 
   <p class="title">Conclusions</p>
-  <p class="body">Text here</p>
+  <p class="body">Is this server still running? It shouldn't be. Take the whole thing down, scrub the database, and start from scratch. Sanitize user input. Even just a simple restriction on usernames to limit them to alphanumeric characters would lessen the risk. There are also <a href= "https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">ready-made, open-source, and free security scanners </a> to help you catch these issues before deployment next time. </p>
 </body>
 </html>
